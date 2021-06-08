@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import BlogList from './BlogList';
 const Home = () => {
 // When we want a reactive value we use usestate hook 
@@ -23,10 +23,16 @@ const Home = () => {
         {title:'Mine Media',body: 'loreum ipsium ..', author:'harshit', id:2 },
         {title:'Mine Dt',body: 'loreum ipsium ..', author:'mario', id:3 }
     ]);
+    // const [name, setname] = useState('mario');
     const handledelete = (id) => {
         const newblogs = blogs.filter(blog => blog.id !== id);
         setblogs(newblogs);
     }
+    // it is run every time the page render depending upon its dependencies which is in the array box if no dependacie then it will log every time when the page renders.
+    // useEffect(() => {
+    //     console.log('use effect ran');
+    //     console.log(name);   
+    // }, [name]);
     return ( 
         <div className="home">
             {/* <h2>Homepage</h2> */}
@@ -35,7 +41,8 @@ const Home = () => {
             <button onClick={(e)=> handleclickagain('mario' , e)}>Click Me Again</button> */}
             {/* Outputting list of items by using a template and not hard coding every thing */}
             <BlogList blogs={blogs} title='All Blogs!' handledelete={handledelete} />
-            
+            {/* <button onClick={() => setname('luigi')}>Namechange</button>
+            <p>{name}</p> */}
         </div>
      );
 }

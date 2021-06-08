@@ -1,0 +1,16 @@
+{
+    "blogs":[
+        {
+            "title": "My First Blog",
+            "body":"loreum ipsuosiihsdnm sdaiudubas ahjdvhujsdbd  dashdaiugdb admajsbdadk adajbdadvkadv",
+            "author":"mario",
+            "id":1
+        },
+        {
+            "title": "Opening Party!",
+            "body":"loreum ipsuosiihsdnm sdaiudubas ahjdvhujsdbd  dashdaiugdb admajsbdadk adajbdadvkadv",
+            "author":"yoshi",
+            "id":2
+        }
+    ]
+}
