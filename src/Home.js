@@ -19,7 +19,8 @@ const Home = () => {
     
 
     const [blogs, setblogs] = useState(null);
-    const [isPending,setisPending] = useState(true)    
+    const [isPending,setisPending] = useState(true);   
+    const [error,setError] = useState(null); 
     // const [name, setname] = useState('mario');
     // it is run every time the page render depending upon its dependencies which is in the array box if no dependacie then it will log every time when the page renders.
     // useEffect(() => {
@@ -29,12 +30,20 @@ const Home = () => {
     useEffect(() => {
         fetch('http://localhost:8000/blogs')
         .then(res => {
+            if(!res.ok){
+                throw Error ('could not fetch the data from the resource');
+            }
             return res.json();
         })
         .then( data => {
+            setError(null)
             setblogs(data)
             setisPending(false)
         })    
+        .catch(err => {
+            setisPending(false)
+            setError(err.message);
+        })
     }, []);
     return ( 
         <div className="home">
@@ -43,6 +52,7 @@ const Home = () => {
             <button onClick={handleclick} >Click ME to know my friend's age</button>
             <button onClick={(e)=> handleclickagain('mario' , e)}>Click Me Again</button> */}
             {/* Outputting list of items by using a template and not hard coding every thing */}
+            {error && <div>{error}</div>}
             {isPending && <div>Loading ....</div>}
             {blogs && <BlogList blogs={blogs} title='All Blogs!' />}
             {/* <button onClick={() => setname('luigi')}>Namechange</button>
