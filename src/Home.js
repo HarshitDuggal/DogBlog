@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import BlogList from './BlogList';
+import useFetch from './useFetch';
 const Home = () => {
 // When we want a reactive value we use usestate hook 
     // const [name, setname] = useState('mario');
@@ -18,33 +19,16 @@ const Home = () => {
 
     
 
-    const [blogs, setblogs] = useState(null);
-    const [isPending,setisPending] = useState(true);   
-    const [error,setError] = useState(null); 
+    
     // const [name, setname] = useState('mario');
     // it is run every time the page render depending upon its dependencies which is in the array box if no dependacie then it will log every time when the page renders.
     // useEffect(() => {
     //     console.log('use effect ran');
     //     console.log(name);   
     // }, [name]);
-    useEffect(() => {
-        fetch('http://localhost:8000/blogs')
-        .then(res => {
-            if(!res.ok){
-                throw Error ('could not fetch the data from the resource');
-            }
-            return res.json();
-        })
-        .then( data => {
-            setError(null)
-            setblogs(data)
-            setisPending(false)
-        })    
-        .catch(err => {
-            setisPending(false)
-            setError(err.message);
-        })
-    }, []);
+    
+    const { Data : blogs , isPending , error} = useFetch('http://localhost:8000/blogs');
+
     return ( 
         <div className="home">
             {/* <h2>Homepage</h2> */}
