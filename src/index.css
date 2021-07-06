@@ -98,3 +98,8 @@
   border-radius: 8px;
   cursor: pointer;
 }
+.NotFound h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 30px;
+}
